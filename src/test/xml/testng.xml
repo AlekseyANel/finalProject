@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="allSuits"  >
+
+    <listeners>
+        <listener class-name="Listeners.TmpSuiteListener" />
+    </listeners>
+
+    <suite-files>
+        <suite-file path="suiteAPITesting.xml" />
+        <suite-file path="suiteUITesting.xml" />
+    </suite-files>
+
+</suite>
+

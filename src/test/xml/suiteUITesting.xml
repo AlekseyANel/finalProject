@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SuiteUITesting">
+    <listeners>
+        <listener class-name="Listeners.TmpSuiteListener" />
+        <listener class-name="Listeners.TmpTestListener" />
+    </listeners>
+    <test name="HomeWork-24.TestNG" preserve-order="false">
+        <classes>
+            <class name="MonumentCity.MonumentCityTest">
+                <methods>
+                    <include name="paramByDataProvider"/>
+                    <include name="mapSearch"/>
+                </methods>
+            </class>
+            <class name="LoginPass.LoginPassTest">
+                <methods>
+                    <include name="loginByDataProvider"/>
+                    <include name="checkRightCredentials"/>
+                </methods>
+            </class>
+            <class name="Search.SearchTest">
+                <methods>
+                    <include name="testBrowser"/>
+
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="HomeWork-20" preserve-order="false">
+        <classes>
+            <class name="rozetka.TestSuit01">
+                <methods>
+                    <include name="Test01"/>
+                    <include name="Test02"/>
+                    <include name="Test04"/>
+                    <include name="Test05"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+
+</suite>
+
+

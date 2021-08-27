@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="SuiteAPITesting">
+    <listeners>
+        <listener class-name="Listeners.TmpTestListener" />
+    </listeners>
+    <test name="api">
+        <classes>
+            <class name="api.TestUserAccount" >
+            </class>
+
+            <class name="api.TestBookStore">
+            </class>
+
+            <class name="api.TestClassWorkTask">
+            </class>
+        </classes>
+    </test>
+</suite>
+

@@ -1,0 +1,9 @@
+driverPath = chromedriver.exe
+url = https://rozetka.com.ua
+urlHero = https://the-internet.herokuapp.com
+
+isbn=9781449325862
+isbn1=9781449331818
+isbn2=9781449337711
+userName=s
+password=1q2w3e4r5T!

@@ -2,6 +2,6 @@
 /shelf/
 /.idea/workspace.xml
 .idea
-target
+/target
 chromedriver.exe
 msedgedriver.exe
