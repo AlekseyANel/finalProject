@@ -3,14 +3,11 @@ package dataProvider.models.books;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONUtil;
-import org.json.JSONObject;
 
 
-import java.util.List;
 
-import static net.minidev.json.JSONValue.toJSONString;
+//import java.util.List;
+
 
 
 /*{

@@ -20,7 +20,7 @@ public class TestUserAccount {
     String baseUrl = "https://demoqa.com/Account/v1";
 
     //-------------User's Account Tests--------------------
-RequestSpecification requestSpecAccount =new RequestSpecBuilder()
+RequestSpecification requestSpecAccount = new RequestSpecBuilder()
 //вариант RequestSpecification через RequestSpecBuilder
         .setBaseUri(baseUrl)
         .setContentType(ContentType.JSON)
@@ -79,7 +79,6 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
             .log().all();//Выводит весь ответ с статус-лайн и хидеррами
 }
 
-//ОТМЕТИТЬ КАК АФТЕРТЕСТ
     @AfterTest    //AfterClass //Delete User by {UUID}-userId
     public void userDelete() {
         given()

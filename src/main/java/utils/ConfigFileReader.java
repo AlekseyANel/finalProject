@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class ConfigFileReader {
-    static Properties properties;
+    Properties properties;
     String propertyFilePath = "src/main/resources/config.txt";
 
     public ConfigFileReader() {
@@ -52,23 +52,23 @@ public class ConfigFileReader {
         else throw new RuntimeException("getUrlHero is not specified in the config.txt file.");
     }
 
-    public static String getUser() {
+    public String getUser() {
         String email = properties.getProperty("userName");
         if (email != null) return email;
         else throw new RuntimeException("email is not specified in the config.txt file.");
     }
 
-    public static String getPassword() {
-        String password = properties.getProperty("password");
+    public String getPassword() {
+       String password = properties.getProperty("password");
         if (password != null) return password;
         else throw new RuntimeException("password is not specified in the config.txt file.");
     }
-    public static String getIsbn() {
+    public String getIsbn() {
         String isbn = properties.getProperty("isbn");
         if (isbn != null) return isbn;
         else throw new RuntimeException("isbn is not specified in the config.txt file.");
     }
-    public static String getIsbn1() {
+    public String getIsbn1() {
         String isbn1 = properties.getProperty("isbn1");
         if (isbn1 != null) return isbn1;
         else throw new RuntimeException("isbn1 is not specified in the config.txt file.");

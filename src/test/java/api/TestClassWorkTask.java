@@ -1,9 +1,12 @@
 package api;
 
 import dataProvider.models.task.MRData;
+import dataProvider.models.task.ResponseTask;
 import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+//import lombok.var;
 import org.hamcrest.Matchers;
 
 
