@@ -63,7 +63,7 @@ public class TestClassWorkTask {
                 .body("MRData.CircuitTable.Circuits.find{it.circuitId== 'americas'}.circuitName",
                         Matchers.equalTo("Circuit of the Americas"))//проверка соответствия "circuitName"
                 //для "Circuit of the Americas" в  объекте, где (circuitId== 'americas')
-        .log().all();
+        ;
 
     }
 

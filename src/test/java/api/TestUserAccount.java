@@ -43,6 +43,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .extract().as(ResUserAccount.class);//Deserializing JSON response to POJO class
         //проверка соответствия имен
         assertThat(resUserAccount.username, Matchers.equalTo(ReqUserAccount.getDefaultRequest().userName));
+        System.out.println("Чекнуть запрос: " + ReqUserAccount.getDefaultRequest());
         ResUserProvider.setSessionUserId(resUserAccount.getUserID());//сеттим юзерАйДи во статический класс
         /*assertThat(resUserAccount
                 .isNotNull()
@@ -84,8 +85,8 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         given()
                 .spec(requestSpecAccount)
                 .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())
-                .basePath("/User/{UUID}")
-                .pathParam("UUID", ResUserProvider.getSessionUserId())
+                .basePath("/User/"+ResUserProvider.getSessionUserId())
+
                 .when().delete()
                 .then()
                 .statusCode(204)
@@ -97,8 +98,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         given()
                 .spec(requestSpecAccount)
                 .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())
-                .basePath("/User/{UUID}")
-                .pathParam("UUID", ResUserProvider.getSessionUserId())
+                .basePath("/User/"+ResUserProvider.getSessionUserId())
                 .when().get()
                 .then()
                 .body("message", Matchers.equalTo("User not found!"))

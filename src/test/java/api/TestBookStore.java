@@ -21,7 +21,7 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 public class TestBookStore {
     String baseUrl = "https://demoqa.com/BookStore/v1";
     static ConfigFileReader configFileReader= new ConfigFileReader();
-    static String checkedISBN = configFileReader.getIsbn();
+    String checkedISBN = configFileReader.getIsbn();
 
 
     private RequestSpecification requestSpecBook() {
@@ -110,7 +110,7 @@ public class TestBookStore {
                 .param("UserId", ResUserProvider.getSessionUserId())
                 .when().delete()
                 .then()
-                //.statusCode(204)
+                .statusCode(204)
                 .log().all();
         System.out.println();
     }
