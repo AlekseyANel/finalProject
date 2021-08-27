@@ -6,5 +6,5 @@
 chromedriver.exe
 msedgedriver.exe
 
-/.allure/
+
 /allure-results/
