@@ -8,6 +8,7 @@ import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
+
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
@@ -51,6 +52,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .isEqualTo(ReqUserAccount.getDefaultRequest().userName);*/
     }
     @BeforeTest //Генерация токена по userid and password
+//  @Test (dependsOnMethods = "userReg")
     public void userGenerateToken() {
         ResGenToken resGenToken =
                 given()
@@ -79,8 +81,21 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
             .body(Matchers.equalTo("true"))//проверка наличия TRUE/FALSE в ответе
             .log().all();//Выводит весь ответ с статус-лайн и хидеррами
 }
+    @Test (dependsOnMethods = "userAuthorized")//Get exist User by {UUID}-userId with his book list/collection
+    public void userExistGet() {
+        given()
+                .spec(requestSpecAccount)
+                .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())
+                .basePath("/User/"+ResUserProvider.getSessionUserId())
+                .when().get()
+                .then()
+                //.body("message", Matchers.equalTo("User not found!"))
+                .log().body();
+        System.out.println("Видим, что юзер exist!");
+    }
 
     @AfterTest    //AfterClass //Delete User by {UUID}-userId
+//@Test (dependsOnMethods = "userExistGet")
     public void userDelete() {
         given()
                 .spec(requestSpecAccount)
@@ -94,7 +109,8 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         System.out.println("Чекнуть входящий UUID запроса: "+ResUserProvider.getSessionUserId());
     }
     @AfterSuite//Get User by {UUID}-userId with his book list/collection
-    public void userGet() {
+//@Test (dependsOnMethods = "userDelete")
+    public void userDeletedGet() {
         given()
                 .spec(requestSpecAccount)
                 .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())

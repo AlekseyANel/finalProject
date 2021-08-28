@@ -35,8 +35,8 @@ public class TestClassWorkTask {
                 .contentType(ContentType.JSON) //проверка типа ответа Json?
                 .body("MRData.CircuitTable.Circuits.size()", Matchers.equalTo(20))
                 .and().body("MRData.CircuitTable.Circuits", hasSize(20))//дублирование проверки 20ти шт другим способом
-                .log().all();
-
+                ;
+        System.out.println("/MRData.CircuitTable/  .Circuits has size: " +responseTask);
     }
 
     @Test
@@ -47,8 +47,7 @@ public class TestClassWorkTask {
                 .then()
                 .statusCode(200)//проверка кода ответа 200?
                 .contentType("application/json")  //проверка типа ответа Json?
-                .header("Content-Length", "4551")
-                .log().all()//проверка наличия такого заголовка в ответе
+                .header("Content-Length", "4551")//проверка наличия такого заголовка в ответе
                 .extract().header("Content-Length");
         // такого хедера с этим значением
         System.out.println("Header has value: " +responseTask);
@@ -61,9 +60,9 @@ public class TestClassWorkTask {
                 .then()
                 .statusCode(200)
                 .body("MRData.CircuitTable.Circuits.find{it.circuitId== 'americas'}.circuitName",
-                        Matchers.equalTo("Circuit of the Americas"))//проверка соответствия "circuitName"
+                        Matchers.equalTo("Circuit of the Americas"));//проверка соответствия "circuitName"
                 //для "Circuit of the Americas" в  объекте, где (circuitId== 'americas')
-        ;
+ //       System.out.println("Header has value: " +responseTask);
 
     }
 
