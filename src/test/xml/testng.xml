@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="allSuits"  >
+<suite name="SuitsByLogic">
+    <!--
+    //Создаём нового юзера в TestUserAccount через API
+    //Получаем токен текущей сессим
+    //Авторизируемся с данным токеном
+    //Заходим в UI сайта с помощью BookTestUI
+    //Мы там уже авторизированы через токен ранее
+    //Тестируем UI, логаут
+    //Повторно прогнать все тесты -> меняем юзернейм в конфиг.тхт
+    //P.S. Отдельно API тесты можно прогнать через suiteAPITesting.xml
+    -->
+        <listeners>
+            <listener class-name="Listeners.TmpSuiteListener" />
+            <listener class-name="Listeners.TmpTestListener" />
+        </listeners>
 
-    <listeners>
-        <listener class-name="Listeners.TmpSuiteListener" />
-    </listeners>
+        <test name="byTests" preserve-order="true">
+    <!--    <groups>
+            <run>
+                <include name="first"/>
+                <include name="second"/>
+            </run>
+        </groups>-->
+        <classes>
+            <class name="api.TestUserAccount"/>
+            <class name="api.TestBookStore"/>
+            <class name="com.demoqa.BookTestUI"/>
+            <class name="api.TestClassWorkTask"/>
+        </classes>
 
-    <suite-files>
-        <suite-file path="suiteAPITesting.xml" />
-        <suite-file path="suiteUITesting.xml" />
-    </suite-files>
+
+
+    </test>
 
 </suite>
 

@@ -15,10 +15,10 @@ public class ReqUserAccount {
 	public String password;
 	public String userName;
 	@JsonIgnore
-	private static ConfigFileReader configFileReader = new ConfigFileReader();
+	private static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
 
 	public static ReqUserAccount getDefaultRequest() {//подготовленная конструкция для реквестов
-		return new ReqUserAccount(configFileReader.getPassword(),configFileReader.getUser());
+		return new ReqUserAccount(configFileReaderAPI.getPassword(), configFileReaderAPI.getUser());
 
 
 	}

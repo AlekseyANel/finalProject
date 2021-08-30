@@ -1,5 +1,0 @@
-driverPath = chromedriver.exe
-url = https://rozetka.com.ua
-urlHero = https://the-internet.herokuapp.com
-email = email@here.com
-password=   !

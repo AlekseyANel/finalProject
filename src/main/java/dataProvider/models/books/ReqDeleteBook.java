@@ -18,9 +18,9 @@ public class ReqDeleteBook {
 	private String userId;
 
 	@JsonIgnore
-	private static ConfigFileReader configFileReader = new ConfigFileReader();
+	private static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
 
 	public static ReqDeleteBook getDefaultRequest() {//подготовленная конструкция для реквестов
-		return new ReqDeleteBook(configFileReader.getIsbn1(), ResUserProvider.getSessionUserId());
+		return new ReqDeleteBook(configFileReaderAPI.getIsbn1(), ResUserProvider.getSessionUserId());
 	}
 }

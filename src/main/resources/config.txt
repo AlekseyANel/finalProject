@@ -1,9 +1,25 @@
+urlAccount = https://demoqa.com/Account/v1
+urlBookStore = https://demoqa.com/BookStore/v1
+urlDemoQA = https://demoqa.com
 driverPath = chromedriver.exe
-url = https://rozetka.com.ua
-urlHero = https://the-internet.herokuapp.com
+
 
 isbn=9781449325862
 isbn1=9781449331818
 isbn2=9781449337711
-userName=kkkkkk
+userName=xxxxxx
 password=1q2w3e4r5T!
+email = email@here.com
+
+    <!--
+    //Создаём нового юзера в TestUserAccount через API
+    //Получаем токен текущей сессим
+    //Авторизируемся с данным токеном
+    //Заходим в UI сайта с помощью BookTestUI
+    //Мы там уже авторизированы черезтокен ранее
+    //Тестируем UI, логаут
+    //Повторно прогнать все тесты -> меняем юзернейм в конфиг.тхт
+    //P.S. Отдельно API тесты можно прогнать через suiteAPITesting.xml
+    -->
+//Пароль можно не менять
+//log-file.log

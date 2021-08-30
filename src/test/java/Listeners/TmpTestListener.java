@@ -18,7 +18,6 @@ public class TmpTestListener implements ITestListener {
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult res) {
-        // TODO Auto-generated method stub
     }
         @Override
         public void onTestFailure(ITestResult res) {

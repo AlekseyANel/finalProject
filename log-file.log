@@ -1,77 +1,86 @@
-[INFO] Scanning for projects...
-[INFO] 
-[INFO] ------------------------< org.example:selenium >------------------------
-[INFO] Building selenium 1.0-SNAPSHOT
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ selenium ---
-[INFO] Deleting C:\Users\LeXa\IdeaProjects\finalProject\target
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ selenium ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 2 resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ selenium ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 18 source files to C:\Users\LeXa\IdeaProjects\finalProject\target\classes
-[INFO] /C:/Users/LeXa/IdeaProjects/finalProject/src/main/java/dataProvider/models/books/ReqAddBookToUserList.java: C:\Users\LeXa\IdeaProjects\finalProject\src\main\java\dataProvider\models\books\ReqAddBookToUserList.java uses unchecked or unsafe operations.
-[INFO] /C:/Users/LeXa/IdeaProjects/finalProject/src/main/java/dataProvider/models/books/ReqAddBookToUserList.java: Recompile with -Xlint:unchecked for details.
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ selenium ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 2 resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ selenium ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 5 source files to C:\Users\LeXa\IdeaProjects\finalProject\target\test-classes
-[INFO] 
-[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ selenium ---
-[INFO] Surefire report directory: C:\Users\LeXa\IdeaProjects\finalProject\target\surefire-reports
+----------START Suite----------------
 
--------------------------------------------------------
- T E S T S
--------------------------------------------------------
-Java HotSpot(TM) 64-Bit Server VM warning: Ignoring option MaxPermSize; support was removed in 8.0
-Running TestSuite
-Configuring TestNG with: org.apache.maven.surefire.testng.conf.TestNG652Configurator@59e5ddf
+
 HTTP/1.1 201 Created
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:25 GMT
+Date: Mon, 30 Aug 2021 07:05:06 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 80
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"50-iVme4/lFlJ6EPjuQ5vJkgeNQy10"
+ETag: W/"50-iUFCZjiPtZCmpyGJtyC1PZ/9fIA"
 
 {
-    "userID": "a6e1dce7-1f47-4066-ac1b-c94ef1ed8f36",
-    "username": "jjjjjj",
+    "userID": "d7d8bc49-119d-4e41-a9d0-3ef71cde4207",
+    "username": "xxxxxx",
     "books": [
         
     ]
 }
-Чекнуть запрос: ReqUserAccount(password=1q2w3e4r5T!, userName=jjjjjj)
+Чекнуть запрос: ReqUserAccount(password=1q2w3e4r5T!, userName=xxxxxx)
+----------Start Test----------------
+
+
+Start test userGenerateToken
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:26 GMT
+Date: Mon, 30 Aug 2021 07:05:07 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 274
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"112-oi3uLXeEUO24cpvZp4vZzCoaGJY"
+ETag: W/"112-vLd95npKT+GYjibPrTQ337BOihU"
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImpqampqaiIsInBhc3N3b3JkIjoiMXEydzNlNHI1VCEiLCJpYXQiOjE2MzAxMDM5MDV9.DksPfOEsBvXdPZRKYZMcTsx7yvZaCSjZAnE5MvmPDqc",
-    "expires": "2021-09-03T22:38:25.969Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Inh4eHh4eCIsInBhc3N3b3JkIjoiMXEydzNlNHI1VCEiLCJpYXQiOjE2MzAzMDcxMDd9.spTuI97kxdDBWI1RUJLQQpGRmgfoo2q4rL8gmJlXpRc",
+    "expires": "2021-09-06T07:05:07.416Z",
     "status": "Success",
     "result": "User authorized successfully."
 }
+userGenerateToken PASSED !!!  
+
+
+Start test userAuthorized
+HTTP/1.1 200 OK
+Server: nginx/1.17.10 (Ubuntu)
+Date: Mon, 30 Aug 2021 07:05:08 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 4
+Connection: keep-alive
+X-Powered-By: Express
+ETag: W/"4-X/5TO4MPCKAyY0ipFgr6/IraRNs"
+
+true
+userAuthorized PASSED !!!  
+
+
+Start test userExistGet
+{
+    "userId": "d7d8bc49-119d-4e41-a9d0-3ef71cde4207",
+    "username": "xxxxxx",
+    "books": [
+        
+    ]
+}
+Видим, что юзер exist!
+userExistGet PASSED !!!  
+
+
+Start test getBookStoreBooks
 Richard E. Silverman
 8 books are there in library!
+getBookStoreBooks PASSED !!!  
+
+
+Start test getOneBook
 9781449325862
+getOneBook PASSED !!!  
+
+
+Start test addBookToUserList
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:28 GMT
+Date: Mon, 30 Aug 2021 07:05:10 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 79
 Connection: keep-alive
@@ -82,14 +91,18 @@ ETag: W/"4f-RpKuEeQ3Bj2uvDIxIXvc7QRyqm4"
     "code": "1205",
     "message": "ISBN supplied is not available in Books Collection!"
 }
-Чекнуть тело запроса addBookToUserList:ReqAddBookToUserList(userId=a6e1dce7-1f47-4066-ac1b-c94ef1ed8f36, collectionOfIsbns=[
+Чекнуть тело запроса addBookToUserList:ReqAddBookToUserList(userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207, collectionOfIsbns=[
     {
       "isbn": "9781449325862"
     }
 ])
+addBookToUserList PASSED !!!  
+
+
+Start test putOneBook
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:28 GMT
+Date: Mon, 30 Aug 2021 07:05:10 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 80
 Connection: keep-alive
@@ -100,10 +113,14 @@ ETag: W/"50-zVNoQrFFG7jCwa1ApMkhwufXoo0"
     "code": "1206",
     "message": "ISBN supplied is not available in User's Collection!"
 }
-Чекнуть тело запроса putOneBook: ReqPutBook(userId=a6e1dce7-1f47-4066-ac1b-c94ef1ed8f36, isbn=9781449331818)
+Чекнуть тело запроса putOneBook: ReqPutBook(userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207, isbn=9781449331818)
+putOneBook PASSED !!!  
+
+
+Start test delOneBook
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:28 GMT
+Date: Mon, 30 Aug 2021 07:05:10 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 80
 Connection: keep-alive
@@ -114,543 +131,64 @@ ETag: W/"50-zVNoQrFFG7jCwa1ApMkhwufXoo0"
     "code": "1206",
     "message": "ISBN supplied is not available in User's Collection!"
 }
-Чекнуть тело запроса delOneBook: ReqDeleteBook(isbn=9781449331818, userId=a6e1dce7-1f47-4066-ac1b-c94ef1ed8f36)
+Чекнуть тело запроса delOneBook: ReqDeleteBook(isbn=9781449331818, userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207)
+delOneBook PASSED !!!  
+
+
+Start test delUserListOfBooks
 HTTP/1.1 204 No Content
 Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:29 GMT
+Date: Mon, 30 Aug 2021 07:05:11 GMT
 Connection: keep-alive
 X-Powered-By: Express
 ETag: W/"44-1mNkCgFWXrysm2bVvAhS6jkBOlQ"
 
-HTTP/1.1 200 OK
-Date: Fri, 27 Aug 2021 22:38:29 GMT
-Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.4.16
-X-Powered-By: PHP/5.4.16
-Access-Control-Allow-Origin: *
-Content-Length: 4551
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
-Content-Type: application/json; charset=utf-8
+delUserListOfBooks PASSED !!!  
 
-{
-    "MRData": {
-        "xmlns": "http://ergast.com/mrd/1.4",
-        "series": "f1",
-        "url": "http://ergast.com/api/f1/2017/circuits.json",
-        "limit": "30",
-        "offset": "0",
-        "total": "20",
-        "CircuitTable": {
-            "season": "2017",
-            "Circuits": [
-                {
-                    "circuitId": "albert_park",
-                    "url": "http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit",
-                    "circuitName": "Albert Park Grand Prix Circuit",
-                    "Location": {
-                        "lat": "-37.8497",
-                        "long": "144.968",
-                        "locality": "Melbourne",
-                        "country": "Australia"
-                    }
-                },
-                {
-                    "circuitId": "americas",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_of_the_Americas",
-                    "circuitName": "Circuit of the Americas",
-                    "Location": {
-                        "lat": "30.1328",
-                        "long": "-97.6411",
-                        "locality": "Austin",
-                        "country": "USA"
-                    }
-                },
-                {
-                    "circuitId": "bahrain",
-                    "url": "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
-                    "circuitName": "Bahrain International Circuit",
-                    "Location": {
-                        "lat": "26.0325",
-                        "long": "50.5106",
-                        "locality": "Sakhir",
-                        "country": "Bahrain"
-                    }
-                },
-                {
-                    "circuitId": "BAK",
-                    "url": "http://en.wikipedia.org/wiki/Baku_City_Circuit",
-                    "circuitName": "Baku City Circuit",
-                    "Location": {
-                        "lat": "40.3725",
-                        "long": "49.8533",
-                        "locality": "Baku",
-                        "country": "Azerbaijan"
-                    }
-                },
-                {
-                    "circuitId": "catalunya",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya",
-                    "circuitName": "Circuit de Barcelona-Catalunya",
-                    "Location": {
-                        "lat": "41.57",
-                        "long": "2.26111",
-                        "locality": "Montmel?",
-                        "country": "Spain"
-                    }
-                },
-                {
-                    "circuitId": "hungaroring",
-                    "url": "http://en.wikipedia.org/wiki/Hungaroring",
-                    "circuitName": "Hungaroring",
-                    "Location": {
-                        "lat": "47.5789",
-                        "long": "19.2486",
-                        "locality": "Budapest",
-                        "country": "Hungary"
-                    }
-                },
-                {
-                    "circuitId": "interlagos",
-                    "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace",
-                    "circuitName": "Aut?dromo Jos? Carlos Pace",
-                    "Location": {
-                        "lat": "-23.7036",
-                        "long": "-46.6997",
-                        "locality": "S?o Paulo",
-                        "country": "Brazil"
-                    }
-                },
-                {
-                    "circuitId": "marina_bay",
-                    "url": "http://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit",
-                    "circuitName": "Marina Bay Street Circuit",
-                    "Location": {
-                        "lat": "1.2914",
-                        "long": "103.864",
-                        "locality": "Marina Bay",
-                        "country": "Singapore"
-                    }
-                },
-                {
-                    "circuitId": "monaco",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Monaco",
-                    "circuitName": "Circuit de Monaco",
-                    "Location": {
-                        "lat": "43.7347",
-                        "long": "7.42056",
-                        "locality": "Monte-Carlo",
-                        "country": "Monaco"
-                    }
-                },
-                {
-                    "circuitId": "monza",
-                    "url": "http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza",
-                    "circuitName": "Autodromo Nazionale di Monza",
-                    "Location": {
-                        "lat": "45.6156",
-                        "long": "9.28111",
-                        "locality": "Monza",
-                        "country": "Italy"
-                    }
-                },
-                {
-                    "circuitId": "red_bull_ring",
-                    "url": "http://en.wikipedia.org/wiki/Red_Bull_Ring",
-                    "circuitName": "Red Bull Ring",
-                    "Location": {
-                        "lat": "47.2197",
-                        "long": "14.7647",
-                        "locality": "Spielberg",
-                        "country": "Austria"
-                    }
-                },
-                {
-                    "circuitId": "rodriguez",
-                    "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez",
-                    "circuitName": "Aut?dromo Hermanos Rodr?guez",
-                    "Location": {
-                        "lat": "19.4042",
-                        "long": "-99.0907",
-                        "locality": "Mexico City",
-                        "country": "Mexico"
-                    }
-                },
-                {
-                    "circuitId": "sepang",
-                    "url": "http://en.wikipedia.org/wiki/Sepang_International_Circuit",
-                    "circuitName": "Sepang International Circuit",
-                    "Location": {
-                        "lat": "2.76083",
-                        "long": "101.738",
-                        "locality": "Kuala Lumpur",
-                        "country": "Malaysia"
-                    }
-                },
-                {
-                    "circuitId": "shanghai",
-                    "url": "http://en.wikipedia.org/wiki/Shanghai_International_Circuit",
-                    "circuitName": "Shanghai International Circuit",
-                    "Location": {
-                        "lat": "31.3389",
-                        "long": "121.22",
-                        "locality": "Shanghai",
-                        "country": "China"
-                    }
-                },
-                {
-                    "circuitId": "silverstone",
-                    "url": "http://en.wikipedia.org/wiki/Silverstone_Circuit",
-                    "circuitName": "Silverstone Circuit",
-                    "Location": {
-                        "lat": "52.0786",
-                        "long": "-1.01694",
-                        "locality": "Silverstone",
-                        "country": "UK"
-                    }
-                },
-                {
-                    "circuitId": "sochi",
-                    "url": "http://en.wikipedia.org/wiki/Sochi_Autodrom",
-                    "circuitName": "Sochi Autodrom",
-                    "Location": {
-                        "lat": "43.4057",
-                        "long": "39.9578",
-                        "locality": "Sochi",
-                        "country": "Russia"
-                    }
-                },
-                {
-                    "circuitId": "spa",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps",
-                    "circuitName": "Circuit de Spa-Francorchamps",
-                    "Location": {
-                        "lat": "50.4372",
-                        "long": "5.97139",
-                        "locality": "Spa",
-                        "country": "Belgium"
-                    }
-                },
-                {
-                    "circuitId": "suzuka",
-                    "url": "http://en.wikipedia.org/wiki/Suzuka_Circuit",
-                    "circuitName": "Suzuka Circuit",
-                    "Location": {
-                        "lat": "34.8431",
-                        "long": "136.541",
-                        "locality": "Suzuka",
-                        "country": "Japan"
-                    }
-                },
-                {
-                    "circuitId": "villeneuve",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve",
-                    "circuitName": "Circuit Gilles Villeneuve",
-                    "Location": {
-                        "lat": "45.5",
-                        "long": "-73.5228",
-                        "locality": "Montreal",
-                        "country": "Canada"
-                    }
-                },
-                {
-                    "circuitId": "yas_marina",
-                    "url": "http://en.wikipedia.org/wiki/Yas_Marina_Circuit",
-                    "circuitName": "Yas Marina Circuit",
-                    "Location": {
-                        "lat": "24.4672",
-                        "long": "54.6031",
-                        "locality": "Abu Dhabi",
-                        "country": "UAE"
-                    }
-                }
-            ]
-        }
-    }
-}
-HTTP/1.1 200 OK
-Date: Fri, 27 Aug 2021 22:38:29 GMT
-Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.4.16
-X-Powered-By: PHP/5.4.16
-Access-Control-Allow-Origin: *
-Content-Length: 4551
-Keep-Alive: timeout=5, max=100
-Connection: Keep-Alive
-Content-Type: application/json; charset=utf-8
 
-{
-    "MRData": {
-        "xmlns": "http://ergast.com/mrd/1.4",
-        "series": "f1",
-        "url": "http://ergast.com/api/f1/2017/circuits.json",
-        "limit": "30",
-        "offset": "0",
-        "total": "20",
-        "CircuitTable": {
-            "season": "2017",
-            "Circuits": [
-                {
-                    "circuitId": "albert_park",
-                    "url": "http://en.wikipedia.org/wiki/Melbourne_Grand_Prix_Circuit",
-                    "circuitName": "Albert Park Grand Prix Circuit",
-                    "Location": {
-                        "lat": "-37.8497",
-                        "long": "144.968",
-                        "locality": "Melbourne",
-                        "country": "Australia"
-                    }
-                },
-                {
-                    "circuitId": "americas",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_of_the_Americas",
-                    "circuitName": "Circuit of the Americas",
-                    "Location": {
-                        "lat": "30.1328",
-                        "long": "-97.6411",
-                        "locality": "Austin",
-                        "country": "USA"
-                    }
-                },
-                {
-                    "circuitId": "bahrain",
-                    "url": "http://en.wikipedia.org/wiki/Bahrain_International_Circuit",
-                    "circuitName": "Bahrain International Circuit",
-                    "Location": {
-                        "lat": "26.0325",
-                        "long": "50.5106",
-                        "locality": "Sakhir",
-                        "country": "Bahrain"
-                    }
-                },
-                {
-                    "circuitId": "BAK",
-                    "url": "http://en.wikipedia.org/wiki/Baku_City_Circuit",
-                    "circuitName": "Baku City Circuit",
-                    "Location": {
-                        "lat": "40.3725",
-                        "long": "49.8533",
-                        "locality": "Baku",
-                        "country": "Azerbaijan"
-                    }
-                },
-                {
-                    "circuitId": "catalunya",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Barcelona-Catalunya",
-                    "circuitName": "Circuit de Barcelona-Catalunya",
-                    "Location": {
-                        "lat": "41.57",
-                        "long": "2.26111",
-                        "locality": "Montmel?",
-                        "country": "Spain"
-                    }
-                },
-                {
-                    "circuitId": "hungaroring",
-                    "url": "http://en.wikipedia.org/wiki/Hungaroring",
-                    "circuitName": "Hungaroring",
-                    "Location": {
-                        "lat": "47.5789",
-                        "long": "19.2486",
-                        "locality": "Budapest",
-                        "country": "Hungary"
-                    }
-                },
-                {
-                    "circuitId": "interlagos",
-                    "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Jos%C3%A9_Carlos_Pace",
-                    "circuitName": "Aut?dromo Jos? Carlos Pace",
-                    "Location": {
-                        "lat": "-23.7036",
-                        "long": "-46.6997",
-                        "locality": "S?o Paulo",
-                        "country": "Brazil"
-                    }
-                },
-                {
-                    "circuitId": "marina_bay",
-                    "url": "http://en.wikipedia.org/wiki/Marina_Bay_Street_Circuit",
-                    "circuitName": "Marina Bay Street Circuit",
-                    "Location": {
-                        "lat": "1.2914",
-                        "long": "103.864",
-                        "locality": "Marina Bay",
-                        "country": "Singapore"
-                    }
-                },
-                {
-                    "circuitId": "monaco",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Monaco",
-                    "circuitName": "Circuit de Monaco",
-                    "Location": {
-                        "lat": "43.7347",
-                        "long": "7.42056",
-                        "locality": "Monte-Carlo",
-                        "country": "Monaco"
-                    }
-                },
-                {
-                    "circuitId": "monza",
-                    "url": "http://en.wikipedia.org/wiki/Autodromo_Nazionale_Monza",
-                    "circuitName": "Autodromo Nazionale di Monza",
-                    "Location": {
-                        "lat": "45.6156",
-                        "long": "9.28111",
-                        "locality": "Monza",
-                        "country": "Italy"
-                    }
-                },
-                {
-                    "circuitId": "red_bull_ring",
-                    "url": "http://en.wikipedia.org/wiki/Red_Bull_Ring",
-                    "circuitName": "Red Bull Ring",
-                    "Location": {
-                        "lat": "47.2197",
-                        "long": "14.7647",
-                        "locality": "Spielberg",
-                        "country": "Austria"
-                    }
-                },
-                {
-                    "circuitId": "rodriguez",
-                    "url": "http://en.wikipedia.org/wiki/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez",
-                    "circuitName": "Aut?dromo Hermanos Rodr?guez",
-                    "Location": {
-                        "lat": "19.4042",
-                        "long": "-99.0907",
-                        "locality": "Mexico City",
-                        "country": "Mexico"
-                    }
-                },
-                {
-                    "circuitId": "sepang",
-                    "url": "http://en.wikipedia.org/wiki/Sepang_International_Circuit",
-                    "circuitName": "Sepang International Circuit",
-                    "Location": {
-                        "lat": "2.76083",
-                        "long": "101.738",
-                        "locality": "Kuala Lumpur",
-                        "country": "Malaysia"
-                    }
-                },
-                {
-                    "circuitId": "shanghai",
-                    "url": "http://en.wikipedia.org/wiki/Shanghai_International_Circuit",
-                    "circuitName": "Shanghai International Circuit",
-                    "Location": {
-                        "lat": "31.3389",
-                        "long": "121.22",
-                        "locality": "Shanghai",
-                        "country": "China"
-                    }
-                },
-                {
-                    "circuitId": "silverstone",
-                    "url": "http://en.wikipedia.org/wiki/Silverstone_Circuit",
-                    "circuitName": "Silverstone Circuit",
-                    "Location": {
-                        "lat": "52.0786",
-                        "long": "-1.01694",
-                        "locality": "Silverstone",
-                        "country": "UK"
-                    }
-                },
-                {
-                    "circuitId": "sochi",
-                    "url": "http://en.wikipedia.org/wiki/Sochi_Autodrom",
-                    "circuitName": "Sochi Autodrom",
-                    "Location": {
-                        "lat": "43.4057",
-                        "long": "39.9578",
-                        "locality": "Sochi",
-                        "country": "Russia"
-                    }
-                },
-                {
-                    "circuitId": "spa",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_de_Spa-Francorchamps",
-                    "circuitName": "Circuit de Spa-Francorchamps",
-                    "Location": {
-                        "lat": "50.4372",
-                        "long": "5.97139",
-                        "locality": "Spa",
-                        "country": "Belgium"
-                    }
-                },
-                {
-                    "circuitId": "suzuka",
-                    "url": "http://en.wikipedia.org/wiki/Suzuka_Circuit",
-                    "circuitName": "Suzuka Circuit",
-                    "Location": {
-                        "lat": "34.8431",
-                        "long": "136.541",
-                        "locality": "Suzuka",
-                        "country": "Japan"
-                    }
-                },
-                {
-                    "circuitId": "villeneuve",
-                    "url": "http://en.wikipedia.org/wiki/Circuit_Gilles_Villeneuve",
-                    "circuitName": "Circuit Gilles Villeneuve",
-                    "Location": {
-                        "lat": "45.5",
-                        "long": "-73.5228",
-                        "locality": "Montreal",
-                        "country": "Canada"
-                    }
-                },
-                {
-                    "circuitId": "yas_marina",
-                    "url": "http://en.wikipedia.org/wiki/Yas_Marina_Circuit",
-                    "circuitName": "Yas Marina Circuit",
-                    "Location": {
-                        "lat": "24.4672",
-                        "long": "54.6031",
-                        "locality": "Abu Dhabi",
-                        "country": "UAE"
-                    }
-                }
-            ]
-        }
-    }
-}
+Starting ChromeDriver 92.0.4515.43 (8c61b7e2989f2990d42f859cac71319137787cce-refs/branch-heads/4515@{#306}) on port 5172
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+серп. 30, 2021 10:05:13 ДП org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+Чекнуть путь к логин странице: https://demoqa.com/login
+Start test checkLinks
+Чекнуть путь к буук странице: https://demoqa.com/links
+checkLinks PASSED !!!  
+
+
+Start test getBooks
+getBooks PASSED !!!  
+
+
+Start test deleteBook
+deleteBook PASSED !!!  
+
+
+Start test taskCircuitsSize
+/MRData.CircuitTable/  .Circuits has size: io.restassured.internal.ValidatableResponseImpl@23d0944b
+taskCircuitsSize PASSED !!!  
+
+
+Start test taskCompareHeader
 Header has value: 4551
-HTTP/1.1 200 OK
-Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:30 GMT
-Content-Type: application/json; charset=utf-8
-Content-Length: 4
-Connection: keep-alive
-X-Powered-By: Express
-ETag: W/"4-X/5TO4MPCKAyY0ipFgr6/IraRNs"
+taskCompareHeader PASSED !!!  
 
-true
-HTTP/1.1 204 No Content
-Server: nginx/1.17.10 (Ubuntu)
-Date: Fri, 27 Aug 2021 22:38:31 GMT
-Connection: keep-alive
-X-Powered-By: Express
-ETag: W/"58-c83Owt2EsOzkUAgXR4u7kKXg66k"
-Чекнуть входящий UUID запроса: a6e1dce7-1f47-4066-ac1b-c94ef1ed8f36
-{
-    "code": "1207",
-    "message": "User not found!"
-}
-Видим, что юзер удален!
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.156 sec
 
-Results :
+Start test taskCompareName
+taskCompareName PASSED !!!  
 
-Tests run: 10, Failures: 0, Errors: 0, Skipped: 0
 
-[INFO] 
-[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ selenium ---
-[INFO] Building jar: C:\Users\LeXa\IdeaProjects\finalProject\target\selenium-1.0-SNAPSHOT.jar
-[INFO] 
-[INFO] --- maven-install-plugin:2.4:install (default-install) @ selenium ---
-[INFO] Installing C:\Users\LeXa\IdeaProjects\finalProject\target\selenium-1.0-SNAPSHOT.jar to C:\Users\LeXa\.m2\repository\org\example\selenium\1.0-SNAPSHOT\selenium-1.0-SNAPSHOT.jar
-[INFO] Installing C:\Users\LeXa\IdeaProjects\finalProject\pom.xml to C:\Users\LeXa\.m2\repository\org\example\selenium\1.0-SNAPSHOT\selenium-1.0-SNAPSHOT.pom
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  19.126 s
-[INFO] Finished at: 2021-08-28T01:38:35+03:00
-[INFO] ------------------------------------------------------------------------
+----------FINISH Test----------------
+
+
+----------FINISH SUITE----------------
+
+
+
+===============================================
+SuitsByLogic
+Total tests run: 15, Failures: 0, Skips: 0
+===============================================
+

@@ -4,7 +4,6 @@ import dataProvider.models.user.ReqUserAccount;
 import dataProvider.models.user.ResGenToken;
 import dataProvider.models.user.ResUserAccount;
 import dataProvider.models.user.ResUserProvider;
-import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -13,12 +12,14 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
 import org.testng.annotations.*;
+import utils.ConfigFileReader;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestUserAccount {
-    String baseUrl = "https://demoqa.com/Account/v1";
+    String baseUrl = new ConfigFileReader().getUrlAccount();
+//    String baseUrl = "https://demoqa.com/Account/v1";
 
     //-------------User's Account Tests--------------------
 RequestSpecification requestSpecAccount = new RequestSpecBuilder()
@@ -31,7 +32,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         .expectContentType(ContentType.JSON)
         .expectResponseTime(Matchers.lessThan(5000L))//ответное время не более 5сек
         .build();
-    @BeforeSuite
+    @BeforeSuite (groups = {"first"})
     public void userReg(){
         ResUserAccount resUserAccount =
                 given()
@@ -41,8 +42,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .then()
                 .statusCode(201)
                 .log().all()//Выводит весь ответ
-                .extract().as(ResUserAccount.class);//Deserializing JSON response to POJO class
-        //проверка соответствия имен
+                .extract().as(ResUserAccount.class);//Deserializing JSON response to POJO class проверка соответствия имен
         assertThat(resUserAccount.username, Matchers.equalTo(ReqUserAccount.getDefaultRequest().userName));
         System.out.println("Чекнуть запрос: " + ReqUserAccount.getDefaultRequest());
         ResUserProvider.setSessionUserId(resUserAccount.getUserID());//сеттим юзерАйДи во статический класс
@@ -51,8 +51,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .extracting(ResUserAccount::getUsername)
                 .isEqualTo(ReqUserAccount.getDefaultRequest().userName);*/
     }
-    @BeforeTest //Генерация токена по userid and password
-//  @Test (dependsOnMethods = "userReg")
+    @Test (groups = {"first"}) //Генерация токена по userid and password
     public void userGenerateToken() {
         ResGenToken resGenToken =
                 given()
@@ -69,7 +68,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         ResUserProvider.setSessionToken(resGenToken.getToken());//сеттим токен во статический класс
     }
 
-    @Test //(dependsOnMethods = "userGenerateToken")//Авторизирован юзер или нет
+    @Test (groups = {"first"}, dependsOnMethods = "userGenerateToken")//Авторизирован юзер или нет
     public void userAuthorized() {
             given()
             .header("Authorization", ("Bearer "+ResUserProvider.getSessionToken()))
@@ -81,7 +80,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
             .body(Matchers.equalTo("true"))//проверка наличия TRUE/FALSE в ответе
             .log().all();//Выводит весь ответ с статус-лайн и хидеррами
 }
-    @Test (dependsOnMethods = "userAuthorized")//Get exist User by {UUID}-userId with his book list/collection
+    @Test (groups = {"first"}, dependsOnMethods = "userAuthorized")//Get exist User by {UUID}-userId with his book list/collection
     public void userExistGet() {
         given()
                 .spec(requestSpecAccount)
@@ -89,38 +88,23 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .basePath("/User/"+ResUserProvider.getSessionUserId())
                 .when().get()
                 .then()
-                //.body("message", Matchers.equalTo("User not found!"))
+                .statusCode(200)
                 .log().body();
         System.out.println("Видим, что юзер exist!");
     }
 
-    @AfterTest    //AfterClass //Delete User by {UUID}-userId
+    @AfterSuite (groups = {"second"}, enabled = false)   //AfterClass //Delete User by {UUID}-userId
 //@Test (dependsOnMethods = "userExistGet")
     public void userDelete() {
         given()
                 .spec(requestSpecAccount)
                 .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())
                 .basePath("/User/"+ResUserProvider.getSessionUserId())
-
                 .when().delete()
                 .then()
                 .statusCode(204)
                 .log().all();
         System.out.println("Чекнуть входящий UUID запроса: "+ResUserProvider.getSessionUserId());
     }
-    @AfterSuite//Get User by {UUID}-userId with his book list/collection
-//@Test (dependsOnMethods = "userDelete")
-    public void userDeletedGet() {
-        given()
-                .spec(requestSpecAccount)
-                .header("Authorization", "Bearer "+ResUserProvider.getSessionToken())
-                .basePath("/User/"+ResUserProvider.getSessionUserId())
-                .when().get()
-                .then()
-                .body("message", Matchers.equalTo("User not found!"))
-                .log().body();
-        System.out.println("Видим, что юзер удален!");
-    }
-
 
 }

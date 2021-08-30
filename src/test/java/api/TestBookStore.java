@@ -19,9 +19,10 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 /*import org.testng.annotations.Test;*/
 //-------------BookStore Tests--------------------
 public class TestBookStore {
-    String baseUrl = "https://demoqa.com/BookStore/v1";
-    static ConfigFileReader configFileReader= new ConfigFileReader();
-    String checkedISBN = configFileReader.getIsbn();
+//    String baseUrl = "https://demoqa.com/BookStore/v1";
+    static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
+    String baseUrl = configFileReaderAPI.getUrlBookStore();
+    String checkedISBN = configFileReaderAPI.getIsbn();
 
 
     private RequestSpecification requestSpecBook() {
@@ -35,7 +36,7 @@ public class TestBookStore {
             .expectResponseTime(Matchers.lessThan(5000L))//ответное время не более 5сек
             .build();
 
-    @Test // Ищем все книги
+    @Test (groups = {"first"})// Ищем все книги
     public void getBookStoreBooks() {
         ResponseBooks responseBooks = //запись ответа в переменную responseBooks
                 requestSpecBook()
@@ -51,7 +52,7 @@ public class TestBookStore {
         System.out.println(responseBooks.getBooks().get(0).getAuthor());//вариант вывода первого автора
         System.out.println(responseBooks.getBooks().size()+" books are there in library!");
     }
-    @Test //(dependsOnMethods = "getBookStoreBooks")// Ищем одну книгу по нужному параметру ISBN
+    @Test (groups = {"first"}, dependsOnMethods = "getBookStoreBooks")// Ищем одну книгу по нужному параметру ISBN
     public void getOneBook() {
         BooksItem responseBook = requestSpecBook()
                 .basePath("/Book")
@@ -63,7 +64,7 @@ public class TestBookStore {
                 .extract().as(BooksItem.class);//Deserializing JSON response to POJO class
         System.out.println(responseBook.getIsbn());
     }
-    @Test (dependsOnMethods = "getOneBook")// по userId Добавляем выбранную книгу в ЛистКниг/коллекцию юзера
+    @Test (groups = {"first"}, dependsOnMethods = "getOneBook")// по userId Добавляем выбранную книгу в ЛистКниг/коллекцию юзера
     public void addBookToUserList() {
                 requestSpecBook()
                 .basePath("/Books")
@@ -76,7 +77,7 @@ public class TestBookStore {
                 .log().all();
         System.out.println("Чекнуть тело запроса addBookToUserList:" + ReqAddBookToUserList.getDefaultRequest());
     }
-    @Test (dependsOnMethods = "addBookToUserList")//Replacement one book by UserId and ISBN from User's Collection to another ISBN1
+    @Test (groups = {"first"}, dependsOnMethods = "addBookToUserList")//Replacement one book by UserId and ISBN from User's Collection to another ISBN1
     public void putOneBook() {
         requestSpecBook()
                 .basePath("/Book/")
@@ -89,7 +90,7 @@ public class TestBookStore {
                 .log().all();
         System.out.println("Чекнуть тело запроса putOneBook: "+ ReqPutBook.getDefaultRequest());
     }
-    @Test (dependsOnMethods = "putOneBook")//Delete one book by UserId and ISBN from User's Collection!
+    @Test (groups = {"first"}, dependsOnMethods = "putOneBook")//Delete one book by UserId and ISBN from User's Collection!
     public void delOneBook() {
         requestSpecBook()
                 .basePath("/Book")
@@ -102,7 +103,7 @@ public class TestBookStore {
                 .log().all();
         System.out.println("Чекнуть тело запроса delOneBook: "+ReqDeleteBook.getDefaultRequest());
     }
-    @Test (dependsOnMethods = "delOneBook")// Удаляет ЛистКниг/коллекцию юзера, которую мы якобы добавили ранее через addListOfBooks
+    @Test (groups = {"first"}, dependsOnMethods = "delOneBook")// Удаляет ЛистКниг/коллекцию юзера, которую мы якобы добавили ранее через addListOfBooks
     public void delUserListOfBooks() {
         requestSpecBook()
                 .basePath("/Books")
