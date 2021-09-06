@@ -56,15 +56,25 @@ public class ConfigFileReader {
     }
 
     public String getUser() {
-        String email = properties.getProperty("userName");
-        if (email != null) return email;
-        else throw new RuntimeException("email is not specified in the config.txt file.");
+        String userName = properties.getProperty("userName");
+        if (userName != null) return userName;
+        else throw new RuntimeException("userName is not specified in the config.txt file.");
     }
 
     public String getPassword() {
        String password = properties.getProperty("password");
         if (password != null) return password;
         else throw new RuntimeException("password is not specified in the config.txt file.");
+    }
+    public String getFirstName() {
+        String firstName = properties.getProperty("firstName");
+        if (firstName != null) return firstName;
+        else throw new RuntimeException("firstName is not specified in the config.txt file.");
+    }
+    public String getLastName() {
+        String lastName = properties.getProperty("lastName");
+        if (lastName != null) return lastName;
+        else throw new RuntimeException("lastName is not specified in the config.txt file.");
     }
     public String getIsbn() {
         String isbn = properties.getProperty("isbn");

@@ -3,15 +3,12 @@ package business.layer.com.demoqa.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import utils.ConfigFileReader;
+import org.testng.Assert;
 
-public class LoginPage {
-    WebDriver driver;
-        ConfigFileReader configFileReader =  new ConfigFileReader();
+public class LoginPage extends BasePage {
     String loginPageUrl = configFileReader.getUrlDemoQA() +"/login";
-        //String loginPageUrl = "https://demoqa.com/login";
-//        Waiter waiter;
+
+
     @FindBy(css = "#userForm > div:nth-child(1) > h5")
     WebElement heading;
 
@@ -24,26 +21,34 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(text(),'Login')]")
     WebElement loginButton;
 
-    @FindBy(xpath ="//button[contains(text(),'Log out')]")                      //"//div[contains(text(),'Profile')]"
-    static WebElement logoutButton;
+    @FindBy(xpath ="//button[contains(text(),'Log out')]")
+    WebElement logoutButton;
 
     public LoginPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
         System.out.println("Чекнуть путь к логин странице: " +loginPageUrl);
         driver.get(loginPageUrl);
-
     }
 
-    public void login(String userName, String password) throws InterruptedException {
-        heading.click();
+    public void login(String userName, String password) {
         userNameInputField.sendKeys(userName);
         passwordInputField.sendKeys(password);
         loginButton.click();
-        //Assert.assertTrue(logoutButton.isDisplayed());
+        //ожидаем полной регистрации, чтоб появилась кнопка ЛОгаут
+        super.waiterClickable(logoutButton);
+        Assert.assertTrue(logoutButton.isDisplayed());
     }
 
-    public boolean isLoginPageOpened(){
+    public void logout() {
+        super.waiterClickable(logoutButton);
+        logoutButton.click();
+        Assert.assertTrue(loginButton.isDisplayed());
+    }
+
+
+    public boolean isPageOpened(){
         return heading.getText().contains("Login in Book Store");
     }
+
+
 }

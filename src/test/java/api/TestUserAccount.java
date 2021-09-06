@@ -18,8 +18,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestUserAccount {
-    String baseUrl = new ConfigFileReader().getUrlAccount();
-//    String baseUrl = "https://demoqa.com/Account/v1";
+    String baseUrl = new ConfigFileReader().getUrlAccount();  // https://demoqa.com/Account/v1;
 
     //-------------User's Account Tests--------------------
 RequestSpecification requestSpecAccount = new RequestSpecBuilder()
@@ -32,7 +31,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         .expectContentType(ContentType.JSON)
         .expectResponseTime(Matchers.lessThan(5000L))//ответное время не более 5сек
         .build();
-    @BeforeSuite (groups = {"first"})
+    @BeforeTest (description = "Registration new user")
     public void userReg(){
         ResUserAccount resUserAccount =
                 given()
@@ -51,7 +50,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
                 .extracting(ResUserAccount::getUsername)
                 .isEqualTo(ReqUserAccount.getDefaultRequest().userName);*/
     }
-    @Test (groups = {"first"}) //Генерация токена по userid and password
+    @Test  (description = "Session Token generation by userid and password")
     public void userGenerateToken() {
         ResGenToken resGenToken =
                 given()
@@ -68,7 +67,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         ResUserProvider.setSessionToken(resGenToken.getToken());//сеттим токен во статический класс
     }
 
-    @Test (groups = {"first"}, dependsOnMethods = "userGenerateToken")//Авторизирован юзер или нет
+    @Test (dependsOnMethods = "userGenerateToken", description = "Is user authorized or not")
     public void userAuthorized() {
             given()
             .header("Authorization", ("Bearer "+ResUserProvider.getSessionToken()))
@@ -80,7 +79,8 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
             .body(Matchers.equalTo("true"))//проверка наличия TRUE/FALSE в ответе
             .log().all();//Выводит весь ответ с статус-лайн и хидеррами
 }
-    @Test (groups = {"first"}, dependsOnMethods = "userAuthorized")//Get exist User by {UUID}-userId with his book list/collection
+    @Test ( dependsOnMethods = "userAuthorized",
+            description = "Get exist User by {UUID}-userId with his book list/collection")
     public void userExistGet() {
         given()
                 .spec(requestSpecAccount)
@@ -93,8 +93,7 @@ ResponseSpecification responseSpecAccount = new ResponseSpecBuilder()
         System.out.println("Видим, что юзер exist!");
     }
 
-    @AfterSuite (groups = {"second"}, enabled = false)   //AfterClass //Delete User by {UUID}-userId
-//@Test (dependsOnMethods = "userExistGet")
+    @AfterTest (description = "AfterClass //Delete User by {UUID}-userId")
     public void userDelete() {
         given()
                 .spec(requestSpecAccount)

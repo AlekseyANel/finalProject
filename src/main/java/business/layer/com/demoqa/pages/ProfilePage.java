@@ -14,11 +14,7 @@ import utils.ConfigFileReader;
 
 import java.util.List;
 
-public class ProfilePage {
-    WebDriver driver;
-//    WaiterForElement waiterForElement;
-    WebDriverWait wait;
-    ConfigFileReader configFileReader =  new ConfigFileReader();
+public class ProfilePage extends BasePage{
     String pageUrl = configFileReader.getUrlDemoQA() +"/profile";
 
     @FindBy(xpath = "//div[contains(text(),'Profile')]")
@@ -29,15 +25,21 @@ public class ProfilePage {
     WebElement haverbekeBook;
     @FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div[5]/div/span")
     WebElement secondBookDel;
+    @FindBy(xpath = "//div[@class='text-right button di']/button[contains(text(),'Delete All Books')]")
+    WebElement allBooksDel;
+    @FindBy(xpath = "//button[contains(text(),'Delete Account')]")
+    WebElement accountDel;
+
+
+    @FindBy(xpath = "//*[@id='closeSmallModal-ok']")
+    WebElement confirmDel;
     @FindBy(xpath = "//*[@id='delete-record-undefined']")
-        List<WebElement> collectionSize;
+    List<WebElement> collectionSize;
 
     public ProfilePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
         driver.get(pageUrl);
     }
-
 
     public int getCollectionSize() {
         return collectionSize.size();           // driver.findElements(By.xpath(collectionSize.toString())).size();
@@ -48,21 +50,27 @@ public class ProfilePage {
     public boolean getHaverbekeBook() {
         return haverbekeBook.isEnabled();
     }
-    public void secondBookDel()  {
+    public void secondBookDel() throws InterruptedException {
         secondBookDel.click();
-        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By
-                .xpath("//*[@id='closeSmallModal-ok']"))).click();
-//        Assert.assertTrue(driver.switchTo().alert().getText().contains("Do you want to delete this book?"));
-        try {
-            wait = new WebDriverWait(driver, 3);
-            wait.until(ExpectedConditions.alertIsPresent());
-            Assert.assertTrue(driver.switchTo().alert().getText().contains("Book deleted."));
-            driver.switchTo().alert().accept();
-//            waiterForElement.waiterAlert("Book deleted.");
-        } catch (Exception e) {
-            //exception handling
-        }
+        super.waiterClickable(confirmDel);
+        confirmDel.click();
+        super.waiterAlert("Book deleted.");
     }
+    public void delAllBooks() throws InterruptedException {
+        focusOnElement(allBooksDel);
+        allBooksDel.click();
+        super.waiterClickable(confirmDel);
+        confirmDel.click();
+        super.waiterAlert("All Books deleted.");
+    }
+    public void delAccount() throws InterruptedException {
+        focusOnElement(accountDel);
+        accountDel.click();
+        super.waiterClickable(confirmDel);
+        confirmDel.click();
+        super.waiterAlert("User Deleted.");
+    }
+
 
     public boolean isPageOpened(){
         return heading.getText().contains("Profile");

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="SuiteAPITesting">
+<suite name="SuiteUITesting">
     <listeners>
         <listener class-name="Listeners.TmpSuiteListener" />
         <listener class-name="Listeners.TmpTestListener" />
     </listeners>
-    <test name="APITest">
+
+    <test name="ElementsTestUI">
         <classes>
-            <class name="api.TestUserAccount" >
-            </class>
-
-            <class name="api.TestBookStore">
-            </class>
-
-            <class name="api.TestClassWorkTask">
-            </class>
+            <class name="com.demoqa.ElementsTestUI"/>
         </classes>
     </test>
+    <test name="BookStoreTest">
+        <classes>
+            <class name="com.demoqa.BookStoreTestUI"/>
+        </classes>
+    </test>
+
 </suite>
 

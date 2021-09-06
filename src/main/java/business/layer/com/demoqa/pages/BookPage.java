@@ -3,14 +3,9 @@ package business.layer.com.demoqa.pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.testng.Assert;
-import utils.waiters.WaiterForElement;
-
-public class BookPage {
+public class BookPage extends BasePage {
     WebDriver driver;
     WebDriverWait wait;
     //WaiterForElement waiterForElement;
@@ -26,32 +21,33 @@ public class BookPage {
 
 
     public BookPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
-    public void back() throws InterruptedException {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", back);
+    public void back() {
+        super.focusOnElement(back);
         back.click();
-
     }
 
-    public void addBook() {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", addBook);
+    public void addBook() throws InterruptedException {
+        super.focusOnElement(addBook);
         addBook.click();
-        try {
-            wait = new WebDriverWait(driver, 3);
-            wait.until(ExpectedConditions.alertIsPresent());
-            Assert.assertTrue(driver.switchTo().alert().getText().contains("Book added to your collection."));
-            driver.switchTo().alert().accept();
-//            waiterForElement.waiterAlert("Book added to your collection.");
-        } catch (Exception e) {
-            //exception handling
-        }
+        super.waiterAlert("Book added to your collection.");
     }
 
     public boolean isPageOpened() {
         return heading.getText().contains("ISBN");
     }
-
 }
+
+
+/*
+        try {
+                wait = new WebDriverWait(driver, 3);
+                wait.until(ExpectedConditions.alertIsPresent());
+                Assert.assertTrue(driver.switchTo().alert().getText().contains("Book added to your collection."));
+                driver.switchTo().alert().accept();
+//            waiterForElement.waiterAlert("Book added to your collection.");
+                } catch (Exception e) {
+                //exception handling
+                }*/

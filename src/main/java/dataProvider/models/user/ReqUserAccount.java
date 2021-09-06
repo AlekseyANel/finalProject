@@ -12,13 +12,13 @@ import utils.ConfigFileReader;
 @NoArgsConstructor
 @Builder
 public class ReqUserAccount {
-	public String password;
 	public String userName;
+	public String password;
 	@JsonIgnore
 	private static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
 
 	public static ReqUserAccount getDefaultRequest() {//подготовленная конструкция для реквестов
-		return new ReqUserAccount(configFileReaderAPI.getPassword(), configFileReaderAPI.getUser());
+		return new ReqUserAccount(configFileReaderAPI.getUser(), configFileReaderAPI.getPassword());
 
 
 	}

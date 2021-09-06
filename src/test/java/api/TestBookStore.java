@@ -2,11 +2,13 @@ package api;
 
 import dataProvider.models.books.*;
 import dataProvider.models.user.ResUserProvider;
+import io.restassured.RestAssured;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utils.ConfigFileReader;
 
@@ -19,11 +21,9 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 /*import org.testng.annotations.Test;*/
 //-------------BookStore Tests--------------------
 public class TestBookStore {
-//    String baseUrl = "https://demoqa.com/BookStore/v1";
     static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
-    String baseUrl = configFileReaderAPI.getUrlBookStore();
+    String baseUrl = configFileReaderAPI.getUrlBookStore(); //https://demoqa.com/BookStore/v1
     String checkedISBN = configFileReaderAPI.getIsbn();
-
 
     private RequestSpecification requestSpecBook() {
         //вариант RequestSpecification через метод requestSpecBook()
@@ -36,7 +36,7 @@ public class TestBookStore {
             .expectResponseTime(Matchers.lessThan(5000L))//ответное время не более 5сек
             .build();
 
-    @Test (groups = {"first"})// Ищем все книги
+    @Test (description = "Look at all books")
     public void getBookStoreBooks() {
         ResponseBooks responseBooks = //запись ответа в переменную responseBooks
                 requestSpecBook()
@@ -52,7 +52,8 @@ public class TestBookStore {
         System.out.println(responseBooks.getBooks().get(0).getAuthor());//вариант вывода первого автора
         System.out.println(responseBooks.getBooks().size()+" books are there in library!");
     }
-    @Test (groups = {"first"}, dependsOnMethods = "getBookStoreBooks")// Ищем одну книгу по нужному параметру ISBN
+    @Test (dependsOnMethods = "getBookStoreBooks",
+            description = "Find out a book by ISBN")
     public void getOneBook() {
         BooksItem responseBook = requestSpecBook()
                 .basePath("/Book")
@@ -64,7 +65,8 @@ public class TestBookStore {
                 .extract().as(BooksItem.class);//Deserializing JSON response to POJO class
         System.out.println(responseBook.getIsbn());
     }
-    @Test (groups = {"first"}, dependsOnMethods = "getOneBook")// по userId Добавляем выбранную книгу в ЛистКниг/коллекцию юзера
+    @Test (dependsOnMethods = "getOneBook",
+            description = "Add a book to user's collection")
     public void addBookToUserList() {
                 requestSpecBook()
                 .basePath("/Books")
@@ -77,7 +79,8 @@ public class TestBookStore {
                 .log().all();
         System.out.println("Чекнуть тело запроса addBookToUserList:" + ReqAddBookToUserList.getDefaultRequest());
     }
-    @Test (groups = {"first"}, dependsOnMethods = "addBookToUserList")//Replacement one book by UserId and ISBN from User's Collection to another ISBN1
+    @Test (dependsOnMethods = "addBookToUserList",
+            description = "Replacement one book with ISBN from User's Collection to another book-ISBN1")
     public void putOneBook() {
         requestSpecBook()
                 .basePath("/Book/")
@@ -103,7 +106,8 @@ public class TestBookStore {
                 .log().all();
         System.out.println("Чекнуть тело запроса delOneBook: "+ReqDeleteBook.getDefaultRequest());
     }
-    @Test (groups = {"first"}, dependsOnMethods = "delOneBook")// Удаляет ЛистКниг/коллекцию юзера, которую мы якобы добавили ранее через addListOfBooks
+    @Test (dependsOnMethods = "delOneBook",
+            description = "Delete all books from user's collection")
     public void delUserListOfBooks() {
         requestSpecBook()
                 .basePath("/Books")

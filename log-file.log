@@ -1,39 +1,44 @@
+[TestNG] Running:
+  C:\Users\LeXa\IdeaProjects\finalProject\src\test\xml\testng.xml
+
 ----------START Suite----------------
 
 
 HTTP/1.1 201 Created
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:06 GMT
+Date: Mon, 30 Aug 2021 12:41:24 GMT
 Content-Type: application/json; charset=utf-8
-Content-Length: 80
+Content-Length: 79
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"50-iUFCZjiPtZCmpyGJtyC1PZ/9fIA"
+ETag: W/"4f-e5og9Dm9FQQVuM4Zzii5R3md9fk"
 
 {
-    "userID": "d7d8bc49-119d-4e41-a9d0-3ef71cde4207",
-    "username": "xxxxxx",
+    "userID": "c60dfac5-3351-401e-b3c0-b45aa9e1c371",
+    "username": "ccccc",
     "books": [
         
     ]
 }
-Чекнуть запрос: ReqUserAccount(password=1q2w3e4r5T!, userName=xxxxxx)
+Чекнуть запрос: ReqUserAccount(password=1q2w3e4r5T!, userName=ccccc)
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not update test fixture: test fixture with uuid 2727bf1c-96fc-4565-8817-9c1ac4235a7a not found
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not stop test fixture: test fixture with uuid 2727bf1c-96fc-4565-8817-9c1ac4235a7a not found
 ----------Start Test----------------
 
 
 Start test userGenerateToken
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:07 GMT
+Date: Mon, 30 Aug 2021 12:41:25 GMT
 Content-Type: application/json; charset=utf-8
-Content-Length: 274
+Content-Length: 273
 Connection: keep-alive
 X-Powered-By: Express
-ETag: W/"112-vLd95npKT+GYjibPrTQ337BOihU"
+ETag: W/"111-NqDEZEF1QKK1pvfCwLLwow9VPiA"
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Inh4eHh4eCIsInBhc3N3b3JkIjoiMXEydzNlNHI1VCEiLCJpYXQiOjE2MzAzMDcxMDd9.spTuI97kxdDBWI1RUJLQQpGRmgfoo2q4rL8gmJlXpRc",
-    "expires": "2021-09-06T07:05:07.416Z",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6ImNjY2NjIiwicGFzc3dvcmQiOiIxcTJ3M2U0cjVUISIsImlhdCI6MTYzMDMyNzI4NX0.j3iJR8kKJkp0Z34P3xzTHpRuiT8GUCC6nAWPjvqJN-c",
+    "expires": "2021-09-06T12:41:25.415Z",
     "status": "Success",
     "result": "User authorized successfully."
 }
@@ -43,7 +48,7 @@ userGenerateToken PASSED !!!
 Start test userAuthorized
 HTTP/1.1 200 OK
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:08 GMT
+Date: Mon, 30 Aug 2021 12:41:26 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 4
 Connection: keep-alive
@@ -56,8 +61,8 @@ userAuthorized PASSED !!!
 
 Start test userExistGet
 {
-    "userId": "d7d8bc49-119d-4e41-a9d0-3ef71cde4207",
-    "username": "xxxxxx",
+    "userId": "c60dfac5-3351-401e-b3c0-b45aa9e1c371",
+    "username": "ccccc",
     "books": [
         
     ]
@@ -80,7 +85,7 @@ getOneBook PASSED !!!
 Start test addBookToUserList
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:10 GMT
+Date: Mon, 30 Aug 2021 12:41:28 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 79
 Connection: keep-alive
@@ -91,7 +96,7 @@ ETag: W/"4f-RpKuEeQ3Bj2uvDIxIXvc7QRyqm4"
     "code": "1205",
     "message": "ISBN supplied is not available in Books Collection!"
 }
-Чекнуть тело запроса addBookToUserList:ReqAddBookToUserList(userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207, collectionOfIsbns=[
+Чекнуть тело запроса addBookToUserList:ReqAddBookToUserList(userId=c60dfac5-3351-401e-b3c0-b45aa9e1c371, collectionOfIsbns=[
     {
       "isbn": "9781449325862"
     }
@@ -102,7 +107,7 @@ addBookToUserList PASSED !!!
 Start test putOneBook
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:10 GMT
+Date: Mon, 30 Aug 2021 12:41:28 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 80
 Connection: keep-alive
@@ -113,14 +118,14 @@ ETag: W/"50-zVNoQrFFG7jCwa1ApMkhwufXoo0"
     "code": "1206",
     "message": "ISBN supplied is not available in User's Collection!"
 }
-Чекнуть тело запроса putOneBook: ReqPutBook(userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207, isbn=9781449331818)
+Чекнуть тело запроса putOneBook: ReqPutBook(userId=c60dfac5-3351-401e-b3c0-b45aa9e1c371, isbn=9781449331818)
 putOneBook PASSED !!!  
 
 
 Start test delOneBook
 HTTP/1.1 400 Bad Request
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:10 GMT
+Date: Mon, 30 Aug 2021 12:41:29 GMT
 Content-Type: application/json; charset=utf-8
 Content-Length: 80
 Connection: keep-alive
@@ -131,14 +136,14 @@ ETag: W/"50-zVNoQrFFG7jCwa1ApMkhwufXoo0"
     "code": "1206",
     "message": "ISBN supplied is not available in User's Collection!"
 }
-Чекнуть тело запроса delOneBook: ReqDeleteBook(isbn=9781449331818, userId=d7d8bc49-119d-4e41-a9d0-3ef71cde4207)
+Чекнуть тело запроса delOneBook: ReqDeleteBook(isbn=9781449331818, userId=c60dfac5-3351-401e-b3c0-b45aa9e1c371)
 delOneBook PASSED !!!  
 
 
 Start test delUserListOfBooks
 HTTP/1.1 204 No Content
 Server: nginx/1.17.10 (Ubuntu)
-Date: Mon, 30 Aug 2021 07:05:11 GMT
+Date: Mon, 30 Aug 2021 12:41:29 GMT
 Connection: keep-alive
 X-Powered-By: Express
 ETag: W/"44-1mNkCgFWXrysm2bVvAhS6jkBOlQ"
@@ -146,13 +151,15 @@ ETag: W/"44-1mNkCgFWXrysm2bVvAhS6jkBOlQ"
 delUserListOfBooks PASSED !!!  
 
 
-Starting ChromeDriver 92.0.4515.43 (8c61b7e2989f2990d42f859cac71319137787cce-refs/branch-heads/4515@{#306}) on port 5172
+Starting ChromeDriver 92.0.4515.43 (8c61b7e2989f2990d42f859cac71319137787cce-refs/branch-heads/4515@{#306}) on port 7394
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-серп. 30, 2021 10:05:13 ДП org.openqa.selenium.remote.ProtocolHandshake createSession
+серп. 30, 2021 3:41:29 ПП org.openqa.selenium.remote.ProtocolHandshake createSession
 INFO: Detected dialect: W3C
 Чекнуть путь к логин странице: https://demoqa.com/login
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not update test fixture: test fixture with uuid 628bb9ef-c081-43e8-8149-961ad40517a4 not found
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not stop test fixture: test fixture with uuid 628bb9ef-c081-43e8-8149-961ad40517a4 not found
 Start test checkLinks
 Чекнуть путь к буук странице: https://demoqa.com/links
 checkLinks PASSED !!!  
@@ -167,7 +174,7 @@ deleteBook PASSED !!!
 
 
 Start test taskCircuitsSize
-/MRData.CircuitTable/  .Circuits has size: io.restassured.internal.ValidatableResponseImpl@23d0944b
+/MRData.CircuitTable/  .Circuits has size: io.restassured.internal.ValidatableResponseImpl@38e46765
 taskCircuitsSize PASSED !!!  
 
 
@@ -183,6 +190,8 @@ taskCompareName PASSED !!!
 ----------FINISH Test----------------
 
 
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not stop test container: container with uuid 43de22f6-6489-48c9-a5ec-781bfd573c4f not found
+[main] ERROR io.qameta.allure.AllureLifecycle - Could not write test container: container with uuid 43de22f6-6489-48c9-a5ec-781bfd573c4f not found
 ----------FINISH SUITE----------------
 
 

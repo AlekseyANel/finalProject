@@ -1,20 +1,14 @@
 package business.layer.com.demoqa.pages;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import utils.ConfigFileReader;
 
-public class MainPage {
-    WebDriver driver;
-    public static ConfigFileReader configFileReader = new ConfigFileReader();
+public class MainPage extends BasePage {
 
     public MainPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
        }
 
-    public void navigateToMainPage() {
-        driver.get(configFileReader.getUrlDemoQA());
+    public void navigateToMainPage() {driver.get(configFileReader.getUrlDemoQA());
     }
 
 }

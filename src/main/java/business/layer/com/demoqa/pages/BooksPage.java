@@ -1,15 +1,10 @@
 package business.layer.com.demoqa.pages;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import utils.ConfigFileReader;
 
-public class BooksPage {
-    WebDriver driver;
-    ConfigFileReader configFileReader =  new ConfigFileReader();
+public class BooksPage extends BasePage {
     String pageUrl = configFileReader.getUrlDemoQA() +"/books";
 
     @FindBy(xpath = "//div[contains(text(),'Book Store')]")
@@ -22,23 +17,21 @@ public class BooksPage {
     WebElement haverbekeBook;
 
     public BooksPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        super(driver);
         driver.get(pageUrl);
 
     }
 
     public void zakazBook() {//наводим на нужный элемент и кликаем
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", zakasBook);
+        super.focusOnElement(zakasBook);
         zakasBook.click();
     }
 
     public void haverbekeBook() {//наводим на нужный элемент и кликаем
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", haverbekeBook);
+        super.focusOnElement(haverbekeBook);
         haverbekeBook.click();
     }
-
-    public boolean isPageOpened(){
+public boolean isPageOpened(){
         return heading.getText().contains("Book Store");
     }
 }

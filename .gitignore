@@ -8,4 +8,4 @@ msedgedriver.exe
 
 
 /allure-results/
-/.allure/
+.allure

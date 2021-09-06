@@ -7,17 +7,24 @@ driverPath = chromedriver.exe
 isbn=9781449325862
 isbn1=9781449331818
 isbn2=9781449337711
-userName=xxxxxx
+userName=vvvv
 password=1q2w3e4r5T!
 email = email@here.com
+firstName=Alex
+lastName=NNN
 
-    <!--
+    <!--API testing
     //Создаём нового юзера в TestUserAccount через API
     //Получаем токен текущей сессим
     //Авторизируемся с данным токеном
-    //Заходим в UI сайта с помощью BookTestUI
+    //Манипулируем с книжками и коллекциями
+    //По итогу удаляем юзера
+    <!--UI
+    //Заходим на сайт с помощью BookTestUI через UI
+    //Рег
     //Мы там уже авторизированы черезтокен ранее
     //Тестируем UI, логаут
+
     //Повторно прогнать все тесты -> меняем юзернейм в конфиг.тхт
     //P.S. Отдельно API тесты можно прогнать через suiteAPITesting.xml
     -->
