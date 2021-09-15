@@ -1,6 +1,7 @@
 package business.layer.com.demoqa.pages;
 
 import org.openqa.selenium.WebDriver;
+import utils.ConfigFileReader;
 
 public class MainPage extends BasePage {
 
@@ -8,7 +9,9 @@ public class MainPage extends BasePage {
         super(driver);
        }
 
-    public void navigateToMainPage() {driver.get(configFileReader.getUrlDemoQA());
+    public void navigateToMainPage() {
+        driver.get(configFileReader.getPropertyFromFile("urlDemoQA"));
+        //configFileReader.getUrlDemoQA()
     }
 
 }

@@ -8,6 +8,7 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import utils.ConfigFileReader;
@@ -21,9 +22,12 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 /*import org.testng.annotations.Test;*/
 //-------------BookStore Tests--------------------
 public class TestBookStore {
-    static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
-    String baseUrl = configFileReaderAPI.getUrlBookStore(); //https://demoqa.com/BookStore/v1
-    String checkedISBN = configFileReaderAPI.getIsbn();
+    ConfigFileReader configFileReader = new ConfigFileReader();
+//    configFileReaderAPI.getUrlBookStore();
+//    configFileReaderAPI.getIsbn();
+
+    String baseUrl = configFileReader.getPropertyFromFile("urlBookStore");               //https://demoqa.com/BookStore/v1
+    String checkedISBN = configFileReader.getPropertyFromFile("isbn");
 
     private RequestSpecification requestSpecBook() {
         //вариант RequestSpecification через метод requestSpecBook()
@@ -50,6 +54,7 @@ public class TestBookStore {
                 .body("books", hasSize(8))
                 .extract().body().as(ResponseBooks.class);//Deserializing JSON response to POJO/DTO class
         System.out.println(responseBooks.getBooks().get(0).getAuthor());//вариант вывода первого автора
+        Assert.assertEquals(responseBooks.getBooks().get(0).getAuthor(),"Richard E. Silverman");
         System.out.println(responseBooks.getBooks().size()+" books are there in library!");
     }
     @Test (dependsOnMethods = "getBookStoreBooks",

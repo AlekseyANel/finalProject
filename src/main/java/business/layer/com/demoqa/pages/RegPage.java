@@ -11,8 +11,8 @@ import utils.ConfigFileReader;
 
 public class RegPage extends BasePage {//не работает из-за рекаптчи
     ConfigFileReader configFileReader =  new ConfigFileReader();
-    String loginPageUrl = configFileReader.getUrlDemoQA() +"/register";
-//        Waiter waiter;
+    String loginPageUrl = configFileReader.getPropertyFromFile("urlDemoQA") +"/register";
+//        Waiter waiter;  configFileReader.getUrlDemoQA()
     @FindBy(xpath = "//div[contains(text(),'Register')]")
     WebElement heading;
 

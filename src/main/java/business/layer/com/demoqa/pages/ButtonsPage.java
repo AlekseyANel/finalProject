@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import utils.ConfigFileReader;
 
 public class ButtonsPage extends BasePage{
-    String pageUrl = configFileReader.getUrlDemoQA() +"/buttons";
+    String pageUrl = configFileReader.getPropertyFromFile("urlDemoQA")+"/buttons";
+    //configFileReader.getUrlDemoQA()
 
     @FindBy(xpath = "//div[contains(text(),'Buttons')]")
     WebElement heading;

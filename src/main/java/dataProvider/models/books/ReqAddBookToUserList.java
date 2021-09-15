@@ -30,17 +30,18 @@ public class ReqAddBookToUserList {
 	public String userId;
 	public List<CollectionOfIsbnsItem> collectionOfIsbns;
 @JsonIgnore
-private static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
+private static ConfigFileReader configFileReader = new ConfigFileReader();
 
 
 	public static ReqAddBookToUserList getDefaultRequest() {//подготовленная конструкция для реквестов
 		return new ReqAddBookToUserList(ResUserProvider.getSessionUserId(),
 			       new ArrayList(List.of("\n"+
 						"    {\n" +
-						"      \"isbn\": \""+ configFileReaderAPI.getIsbn()+"\"\n" +
+						"      \"isbn\": \""+ configFileReader.getPropertyFromFile("isbn")+"\"\n" +
 						"    }\n"+
 						"")));
 
 	}
 }
 
+//configFileReaderAPI.getIsbn()

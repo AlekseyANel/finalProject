@@ -1,6 +1,5 @@
 package business.layer.com.demoqa.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.ConfigFileReader;
 
-import java.time.Duration;
-
-public abstract class BasePage {
+public class BasePage {
     protected Actions actions;
     protected WebDriver driver;
     protected ConfigFileReader configFileReader = new ConfigFileReader();
@@ -32,9 +29,8 @@ public abstract class BasePage {
     protected void waiterClickable(WebElement webElement){
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
-    protected void waiterAlert (String someText) throws InterruptedException {
+    protected void waiterAlert (String someText) {
         try {
-//        wait = new WebDriverWait(driver, 3);
         wait.until(ExpectedConditions.alertIsPresent());
         Assert.assertTrue(driver.switchTo().alert().getText().contains(someText));
         driver.switchTo().alert().accept();

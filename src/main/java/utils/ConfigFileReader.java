@@ -8,7 +8,8 @@ import java.util.Properties;
 
 public class ConfigFileReader {
     Properties properties;
-    String propertyFilePath = "src/main/resources/config.txt";
+    private final String propertyFilePath = "src/main/resources/config.txt";
+    private static String variable;
 
     public ConfigFileReader() {
         BufferedReader reader;
@@ -28,7 +29,15 @@ public class ConfigFileReader {
         }
     }
 
-    public String getUrlAccount() {
+    public String getPropertyFromFile(String propertyName) {
+        variable = properties.getProperty(propertyName);
+        if (variable != null) return variable;
+        else throw new RuntimeException("... is not specified in the config.txt file.");
+    }
+/*  ConfigFileReader.getPropertyFromFile("urlAccount")
+
+
+    public static String getUrlAccount() {
         String url = properties.getProperty("urlAccount");
         if (url != null) return url;
         else throw new RuntimeException("... is not specified in the config.txt file.");
@@ -49,12 +58,6 @@ public class ConfigFileReader {
         else throw new RuntimeException("... is not specified in the config.txt file.");
     }
 
-    public String getEmail() {
-        String email = properties.getProperty("email");
-        if (email != null) return email;
-        else throw new RuntimeException("... is not specified in the config.txt file.");
-    }
-
     public String getUser() {
         String userName = properties.getProperty("userName");
         if (userName != null) return userName;
@@ -66,16 +69,7 @@ public class ConfigFileReader {
         if (password != null) return password;
         else throw new RuntimeException("password is not specified in the config.txt file.");
     }
-    public String getFirstName() {
-        String firstName = properties.getProperty("firstName");
-        if (firstName != null) return firstName;
-        else throw new RuntimeException("firstName is not specified in the config.txt file.");
-    }
-    public String getLastName() {
-        String lastName = properties.getProperty("lastName");
-        if (lastName != null) return lastName;
-        else throw new RuntimeException("lastName is not specified in the config.txt file.");
-    }
+
     public String getIsbn() {
         String isbn = properties.getProperty("isbn");
         if (isbn != null) return isbn;
@@ -86,4 +80,20 @@ public class ConfigFileReader {
         if (isbn1 != null) return isbn1;
         else throw new RuntimeException("isbn1 is not specified in the config.txt file.");
     }
+    public String getEmail() {
+        String email = properties.getProperty("email");
+        if (email != null) return email;
+        else throw new RuntimeException("... is not specified in the config.txt file.");
+    }
+    public String getFirstName() {
+        String firstName = properties.getProperty("firstName");
+        if (firstName != null) return firstName;
+        else throw new RuntimeException("firstName is not specified in the config.txt file.");
+    }
+    public String getLastName() {
+        String lastName = properties.getProperty("lastName");
+        if (lastName != null) return lastName;
+        else throw new RuntimeException("lastName is not specified in the config.txt file.");
+    }
+    */
 }

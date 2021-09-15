@@ -18,10 +18,12 @@ public class ReqPutBook {
 	private String isbn;
 
 	@JsonIgnore
-	private static ConfigFileReader configFileReaderAPI = new ConfigFileReader();
+	private static ConfigFileReader configFileReader = new ConfigFileReader();
 
 
 	public static ReqPutBook getDefaultRequest() {//подготовленная конструкция для реквестов
-		return new ReqPutBook(ResUserProvider.getSessionUserId(), configFileReaderAPI.getIsbn1());
+		return new ReqPutBook(ResUserProvider.getSessionUserId(),
+				configFileReader.getPropertyFromFile("isbn1"));
 	}
 }
+//configFileReaderAPI.getIsbn1()

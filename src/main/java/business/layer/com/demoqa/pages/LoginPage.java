@@ -4,9 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import utils.ConfigFileReader;
 
 public class LoginPage extends BasePage {
-    String loginPageUrl = configFileReader.getUrlDemoQA() +"/login";
+    String loginPageUrl = configFileReader.getPropertyFromFile("urlDemoQA") +"/login";
+            //configFileReader.getUrlDemoQA()
 
 
     @FindBy(css = "#userForm > div:nth-child(1) > h5")

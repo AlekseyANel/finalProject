@@ -18,7 +18,8 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestUserAccount {
-    String baseUrl = new ConfigFileReader().getUrlAccount();  // https://demoqa.com/Account/v1;
+    ConfigFileReader configFileReader = new ConfigFileReader();
+    String baseUrl = configFileReader.getPropertyFromFile("urlAccount");  // https://demoqa.com/Account/v1;
 
     //-------------User's Account Tests--------------------
 RequestSpecification requestSpecAccount = new RequestSpecBuilder()

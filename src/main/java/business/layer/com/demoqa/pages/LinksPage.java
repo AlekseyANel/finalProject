@@ -5,13 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.testng.Assert;
+import utils.ConfigFileReader;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LinksPage extends BasePage{
-    String pageUrl = configFileReader.getUrlDemoQA() +"/links";
+    String pageUrl = configFileReader.getPropertyFromFile("urlDemoQA") +"/links";
+    //configFileReader.getUrlDemoQA()
 
     @FindBy(xpath = "//div[contains(text(),'Links')]")
     WebElement heading;

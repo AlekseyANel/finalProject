@@ -15,7 +15,8 @@ import utils.ConfigFileReader;
 import java.util.List;
 
 public class ProfilePage extends BasePage{
-    String pageUrl = configFileReader.getUrlDemoQA() +"/profile";
+    String pageUrl = configFileReader.getPropertyFromFile("urlDemoQA") +"/profile";
+    //configFileReader.getUrlDemoQA()
 
     @FindBy(xpath = "//div[contains(text(),'Profile')]")
     WebElement heading;

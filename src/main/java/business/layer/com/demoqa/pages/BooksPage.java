@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class BooksPage extends BasePage {
-    String pageUrl = configFileReader.getUrlDemoQA() +"/books";
-
+    String pageUrl = configFileReader.getPropertyFromFile("urlDemoQA") +"/books";
+//configFileReader.getUrlDemoQA()
     @FindBy(xpath = "//div[contains(text(),'Book Store')]")
     WebElement heading;
 
@@ -22,9 +22,10 @@ public class BooksPage extends BasePage {
 
     }
 
-    public void zakazBook() {//наводим на нужный элемент и кликаем
+    public void zakasBook() {//наводим на нужный элемент и кликаем
         super.focusOnElement(zakasBook);
         zakasBook.click();
+//        return new BookPage(driver);
     }
 
     public void haverbekeBook() {//наводим на нужный элемент и кликаем
